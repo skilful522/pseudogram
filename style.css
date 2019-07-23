@@ -1,0 +1,216 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "Comic Sans MS";
+    src:url("fonts/Comic Sans MS/comic.ttf");
+}
+@font-face {
+    font-family: "Magic Wix Script RUS";
+    src:url("fonts/Magic Wix Script RUS/16684 (1).otf");
+}
+
+header {
+    background: snow;
+}
+
+button {
+    cursor: pointer;
+    outline-style: none;
+    border: 3px solid black;
+    background: black;
+    color: white;
+    display: block;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before,
+button::after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: snow;
+    top: 0;
+    left: -100%;
+    transition: .5s;
+    opacity: .5;
+}
+
+dialog {
+    position: absolute;
+    padding: 5px;
+    top: 50%;
+    border-radius: 5px;
+    left: 35%;
+}
+
+#loginButton, #close{
+    width: 100%;
+}
+
+#userLogin, #userPassword {
+    padding-left: 10px;
+    width: 200px;
+}
+
+button:hover {
+    color: black;
+    background: white;
+}
+
+button:hover::before,
+button:hover::after {
+    left: 0;
+}
+
+#appName {
+    font-family: "Magic Wix Script RUS";
+    font-size: 2em;
+}
+
+.infoBlock {
+    height: 410px;
+    background: antiquewhite;
+}
+
+#editButton {
+    position: relative;
+    width: 25%;
+    margin-top: 5px;
+    left: 37%;
+}
+
+.photoBlock {
+    padding-top: 10px;
+    margin-left: 300px;
+    position: relative;
+    width: 290px;
+    height: 320px;
+}
+
+#photoUserBlock, .userNameBlock, .followBlock {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#userName {
+    position: relative;
+    padding: 10px;
+    bottom: 300px;
+    font-family: "Comic Sans MS";
+    font-size: 1.3em;
+    margin-left: 625px;
+    border-radius: 20px;
+    max-height: 300px;
+    max-width: 280px;
+}
+
+.photoBlock > #photoUserBlock > img {
+    padding: 10px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    background: white;
+    max-height: 300px;
+    max-width: 280px;
+}
+
+.accountInfoLabels, .accountInfoValues {
+    font-family: "Comic Sans MS";
+    font-size: 1.3em;
+    position: relative;
+    display: flex;
+    width: 450px;
+    left: 600px;
+    bottom: 250px;
+    justify-content: space-between;
+}
+
+.userButtonsBlock {
+    position: relative;
+    display: flex;
+    left: 600px;
+    bottom: 120px;
+    justify-content: space-between;
+    width: 400px;
+}
+
+#postsButton, #taggedButton {
+    font-family: "Comic Sans MS";
+    font-size: 1.5em;
+}
+
+#followButton {
+    position: relative;
+    padding: 10px;
+    left: 300px;
+    font-family: "Comic Sans MS";
+    font-size: 1.1em;
+    bottom: 350px;
+    border-radius: 20px;
+    max-height: 300px;
+    width: 125px;
+}
+
+.followBlock > #followButton {
+    padding: 10px;
+    border-radius: 20px;
+    max-height: 300px;
+    max-width: 280px;
+}
+
+.headerBlock {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login {
+    width: 100px;
+    text-align: center;
+    font-size: 1.05em;
+    margin-right: 24%;
+}
+
+#search {
+    font-size: 1.05em;
+    margin-left: 25%;
+}
+
+.fullWidth {
+    width: 100%;
+    background: blanchedalmond;
+}
+
+#images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img {
+    width: 320px;
+    height: 400px;
+    border-radius: 25px;
+}
+
+
+#images > img:hover {
+    filter: grayscale(15%);
+    transform: scale(1.01);
+}
+
+#images > img {
+    padding: 12px;
+    cursor: pointer;
+    transition: 1s;
+    width: 425px;
+}
+
+footer {
+    text-align: center;
+}
