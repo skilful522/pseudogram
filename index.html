@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eng">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -10,12 +10,21 @@
     <nav class="headerBlock">
         <label id="appName">Pseoudogram</label>
         <input name="search" id="search" placeholder="search" type="text">
+        <button id="sign-in">Sign in</button>
         <button id="login">Log in</button>
-        <dialog>
-            <button id="close">Закрыть</button>
+        <dialog id="loginDialog">
+            <button id="closeLoginDialog">Close</button>
             <input type="text" id="userLogin" placeholder="Email">
             <input type="password" id="userPassword" placeholder="Password">
-            <button id="loginButton">Войти</button>
+            <button id="loginButton">Log in</button>
+        </dialog>
+        <dialog id="signInDialog">
+            <button id="closeSingInDialog">Close</button>
+            <label id="registration">Registration</label>
+            <input type="text" id="userFirstName" placeholder="Your first name">
+            <input type="text" id="userLastName" placeholder="Your last name">
+            <input type="text" id="userEmail" placeholder="Email">
+            <button id="ok">OK</button>
         </dialog>
     </nav>
 </header>
@@ -24,7 +33,10 @@
         <div id="photoUserBlock">
             <img id="userPhoto" src="https://pp.userapi.com/c639227/v639227527/50bf8/-j6oft2E-bw.jpg?ava=1">
         </div>
-        <button id="editButton">Edit</button>
+        <form id="choosePhotoForm">
+            <input type="file" name="file" id="fileInput">
+            <input type="submit" name="submit" id="submitInput">
+        </form>
     </div>
     <div id="userName">Stanislav Sergienya</div>
     <div class="followBlock">
@@ -55,6 +67,9 @@
         <img class="img" src="https://source.unsplash.com/320x320/weekly?magma" alt="photo">
     </article>
 </section>
+<div class="fullWidth">
+    <button id="feedButton">feed</button>
+</div>
 <footer>Pseoudogram</footer>
 <script src="index.js"></script>
 </body>
