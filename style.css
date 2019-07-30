@@ -106,7 +106,7 @@ button:hover::after {
     position: relative;
     width: 25%;
     margin-top: 5px;
-    left: 10%;
+    left: 15%;
 }
 
 .photoBlock {
@@ -115,6 +115,10 @@ button:hover::after {
     position: relative;
     width: 290px;
     height: 320px;
+}
+
+#fileInput{
+    width: 200px;
 }
 
 #photoUserBlock, .userNameBlock, .followBlock {
@@ -212,11 +216,12 @@ button:hover::after {
     width: 100px;
     text-align: center;
     font-size: 1.05em;
+    margin-left: 25%;
 }
 
 #search {
     font-size: 1.05em;
-    margin-left: 25%;
+    margin-left: 15%;
 }
 
 .fullWidth {
@@ -229,12 +234,24 @@ button:hover::after {
     flex-wrap: wrap;
 }
 
+#homeLink, #feedLink {
+    text-decoration: none;
+    font-size: 1em;
+    font-family: "Comic Sans MS";
+    color: black;
+}
+#homeLink {
+    margin-left: 10px;
+}
+#feedLink {
+    margin-left: 20px;
+}
+
 .img, .feedImages {
     width: 320px;
     height: 400px;
     border-radius: 25px;
 }
-
 
 #images > img:hover {
     filter: grayscale(15%);

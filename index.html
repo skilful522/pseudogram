@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Peudogram</title>
+    <title>Pseudogram</title>
 </head>
 <body>
 <header>
     <nav class="headerBlock">
-        <label id="appName">Pseoudogram</label>
+        <label id="appName">Pseudogram</label>
         <input name="search" id="search" placeholder="search" type="text">
         <button id="sign-in">Sign in</button>
         <button id="login">Log in</button>
@@ -28,34 +28,11 @@
         </dialog>
     </nav>
 </header>
+<div id="linkBlock">
+    <a href="#/" id="homeLink">Home</a>
+    <a href="#/feed" id="feedLink">Feed</a>
+</div>
 <div class="infoBlock">
-    <div class="photoBlock">
-        <div id="photoUserBlock">
-            <img id="userPhoto" src="https://pp.userapi.com/c639227/v639227527/50bf8/-j6oft2E-bw.jpg?ava=1">
-        </div>
-        <form id="choosePhotoForm">
-            <input type="file" name="file" id="fileInput">
-            <input type="submit" name="submit" id="submitInput">
-        </form>
-    </div>
-    <div id="userName">Stanislav Sergienya</div>
-    <div class="followBlock">
-        <button id="followButton">Follow</button>
-    </div>
-    <div class="accountInfoLabels">
-        <label id="postBlock">Post</label>
-        <label id="followersBlock">Followers</label>
-        <label id="FollowedBlock">Followed</label>
-    </div>
-    <div class="accountInfoValues">
-        <div id="postValueBlock">100</div>
-        <div id="followersValueBlock">200</div>
-        <div id="FollowedValueBlock">300</div>
-    </div>
-    <div class="userButtonsBlock">
-        <button id="postsButton">Posts</button>
-        <button id="taggedButton">Tagged</button>
-    </div>
 </div>
 <section class="fullWidth">
     <article id="images" class="fullWidth">
@@ -67,10 +44,8 @@
         <img class="img" src="https://source.unsplash.com/320x320/weekly?magma" alt="photo">
     </article>
 </section>
-<div class="fullWidth">
-    <button id="feedButton">feed</button>
-</div>
-<footer>Pseoudogram</footer>
-<script src="index.js"></script>
+
+<footer>Pseudogram</footer>
+<script type="module" src="index.js"></script>
 </body>
 </html>

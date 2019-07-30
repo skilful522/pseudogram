@@ -13,7 +13,7 @@ var userFirstNameElement = document.querySelector('#userFirstName');
 var userLastNameElement = document.querySelector('#userLastName');
 var userEmailElement = document.querySelector("#userEmail");
 
-var token;
+export var token;
 var API = "https://intern-staging.herokuapp.com/api";
 
 var userNameElement = document.getElementById("userName");
@@ -21,14 +21,10 @@ var registration = document.querySelector("#registration");
 
 var save = document.querySelector("#loginButton");
 var search = document.querySelector("#search");
-var post = document.querySelector("#postsButton");
-var tagged = document.querySelector("#taggedButton");
-var oldImage = document.getElementsByClassName("img");
 var images = document.querySelector("#images");
 var edit = document.querySelector("#editButton");
-var feedButton = document.querySelector("#feedButton");
 
-var choosePhotoForm = document.forms.namedItem("choosePhotoForm");
+export var choosePhotoForm = document.forms.namedItem("choosePhotoForm");
 
 var userLogin = document.querySelector("#userLogin");
 var userPassword = document.querySelector("#userPassword");
@@ -37,20 +33,40 @@ var myLogin = "skilful522@gmail.com";
 var myPassword = "uoLzwL";
 var authorized = false;
 
+var linkBlock = document.querySelector("#linkBlock");
+var homeLink = document.querySelector("#homeLink");
+var feedLink = document.querySelector("#feedLink");
+
+
 var infoBlock = document.querySelector(".infoBlock");
+var oldImage = document.getElementsByClassName("img");
+
 var res = [];
+res[0] = "320x320";
+res[1] = "640x640";
+res[2] = "800x800";
+res[3] = "900x900";
+res[4] = "360x360";
+res[5] = "340x340";
 
 var userName;
 var usersNames = [];
 var usersEmails = [];
 
-var fragment = document.createDocumentFragment();
-
 var routes = {
-    "login": {
-        html: "login/login.html",
+    '': {
+        html: 'home/home.html',
+        src: './home/home.js'
+    },
+    'feed': {
+        html: 'feed/feed.html',
+        src: './feed/feed.js'
     }
 };
+
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
 var requestTemplate = (function () {
     var cache = {};
@@ -86,9 +102,8 @@ var runScript = (function () {
 
 
 var render = (function () {
-    var content = document.getElementsByClassName('infoBlock');
     return function (html) {
-        content.innerHTML = html;
+        infoBlock.innerHTML = html;
     }
 })();
 
@@ -115,46 +130,31 @@ var handleRouting = (function () {
 window.addEventListener('DOMContentLoaded', handleRouting);
 window.addEventListener('hashchange', handleRouting);
 
-function getRandomArbitrary(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-res[0] = "320x320";
-res[1] = "640x640";
-res[2] = "800x800";
-res[3] = "900x900";
-res[4] = "360x360";
-res[5] = "340x340";
-
 search.style.visibility = "hidden";
-feedButton.style.display = "none";
 infoBlock.style.display = "none";
-
-images.addEventListener("click", function (event) {
-    if (event.target.style.width === "75%") {
-        event.target.style.width = "425px";
-        event.target.style.height = "400px";
-        if (authorized == true) {
-            infoBlock.style.display = "block";
-        }
-    } else {
-        event.target.style.display = "block";
-        event.target.style.marginLeft = "auto";
-        event.target.style.marginRight = "auto";
-        event.target.style.width = "75%";
-        infoBlock.style.display = "none";
-        event.target.style.height = "75%";
-    }
-});
+linkBlock.style.display = "none";
 
 search.addEventListener("click", function () {
     infoBlock.style.display = "block";
     document.getElementById("search").value = null;
 });
 
+feedLink.addEventListener('click', function () {
+    search.style.visibility = "hidden";
+    images.style.display = "none";
+    document.querySelector("footer").style.display = "none";
+});
+
+homeLink.addEventListener('click', function () {
+    search.style.visibility = "visible";
+    images.style.display = "flex";
+    document.querySelector("footer").style.display = "none";
+});
+
 search.onkeypress = function (event) {
     var searchText = document.getElementById("search").value;
     infoBlock.style.display = "none";
+    console.log(token);
     if (event.keyCode == 13) {
         for (let i = 0; i < res.length; i++) {
             oldImage[i].style.visibility = "visible";
@@ -164,26 +164,11 @@ search.onkeypress = function (event) {
     }
 };
 
-tagged.addEventListener("click", function () {
-    for (let i = 1; i < res.length; i++) {
-        oldImage[0].src = "https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60";
-        oldImage[i].style.visibility = "hidden";
-    }
-});
-
-post.addEventListener("click", function () {
-    for (let i = 0; i < res.length; i++) {
-        var image = "https://source.unsplash.com/320x320/weekly?" + getRandomArbitrary(0, 200);
-        oldImage[i].style.visibility = "visible";
-        oldImage[i].src = image;
-    }
-});
-
 login.addEventListener("click", function () {
     if (login.innerHTML === "Log out") {
         authorized = false;
-        feedButton.style.display = "none";
         infoBlock.style.display = "none";
+        linkBlock.style.display = "none";
         signIn.style.display = "block";
         login.innerHTML = "Log in";
         search.style.visibility = "hidden";
@@ -233,7 +218,6 @@ ok.addEventListener('click', function () {
 });
 
 
-
 closeLoginDialog.addEventListener("click", function () {
     loginDialog.close();
     userLogin.value = "";
@@ -246,36 +230,19 @@ closeSingInDialog.addEventListener("click", function () {
 
 save.addEventListener("click", function () {
     if (userLogin.value == myLogin && userPassword.value == myPassword) {
-        var logInReq = {email: userLogin.value, password: userPassword.value};
-        doLogInRequest(logInReq);
-        authorized = true;
-        signIn.style.display = "none";
-        feedButton.style.display = "block";
-        infoBlock.style.display = "block";
-        login.innerHTML = "Log out";
-        search.style.visibility = "visible";
-        loginDialog.close();
-        userLogin.value = "";
-        userPassword.value = "";
+    var logInReq = {email: userLogin.value, password: userPassword.value};
+    doLogInRequest(logInReq);
+    authorized = true;
+    signIn.style.display = "none";
+    infoBlock.style.display = "block";
+    linkBlock.style.display = "inline-flex";
+    login.innerHTML = "Log out";
+    search.style.visibility = "visible";
+    loginDialog.close();
+    userLogin.value = "";
+    userPassword.value = "";
     }
 });
-
-feedButton.addEventListener('click', function () {
-    for (var i = 0; i < 3; i++) {
-        var img = document.createElement("img");
-        img.src = "https://source.unsplash.com/320x320/weekly?" + getRandomArbitrary(0, 200);
-        img.className = 'feedImages';
-        fragment.appendChild(img);
-        images.appendChild(fragment);
-    }
-});
-
-/*edit.addEventListener('click', function () {
-    const elements = document.getElementsByClassName("feedImages");
-    while (elements.length > 0) elements[0].remove();
-    console.log(usersNames.length);
-    console.log(images);
-}); */
 
 signIn.addEventListener('click', function () {
     signInDialog.showModal();
@@ -308,27 +275,8 @@ function doSignInRequest(data) {
         json => console.log(json)
     );
 }
-function doImageRequest(url, method, data, headers) {
-    fetch("${API}${url}", {
-        method: method,
-        body: data,
-        headers: headers,
-    }).then(
-        resp => resp.json()
-    ).then(
-        json => console.log(json)
-    );
-}
 
-doImageRequest('/identification','GET',null)
 
-choosePhotoForm.addEventListener('submit', function (event) {
-    var formD = new FormData(this);
-    console.log(token);
-    formD.append('parentEntityId', '1');
-    doImageRequest("/file",'POST', formD, {"token": token});
-    event.preventDefault();
-});
 
 
 
